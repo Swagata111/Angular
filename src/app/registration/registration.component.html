@@ -1,0 +1,126 @@
+<div class="container" xmlns="http://www.w3.org/1999/html">
+  <div class="row">
+    <div class="offset-3"></div>
+    <div class="col-md-6">
+      <form name="form" #lf="ngForm" (submit)="register()">
+
+         
+        <!-- Name -->
+        <div class="form-group">
+          <label for="userName">Name</label>
+          <input type="text"
+                 id="userName"
+                 class="form-control"
+                 name="userName"
+                 placeholder="Your name"
+                 [(ngModel)]="model.userName"
+                 #userName="ngModel"
+                 required minlength="3"/>
+          
+                 <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="alert alert-danger">
+          <div *ngIf="userName.errors.required">
+              Name is required.
+            </div>
+            <div *ngIf="userName.errors.minlength">
+              Name must be at least 3 characters long.
+            </div>
+          
+     </div>
+        </div>
+        <!-- Email -->
+        <div class="form-group">
+          <label for="userMail">Email</label>
+          <input type="text"
+                 id="userMail"
+                 class="form-control"
+                 name="userMail"
+                 placeholder="Your email"
+                 [(ngModel)]="model.userMail"
+                 #userMail="ngModel"
+                 required email/>
+
+          <!-- input validation group -->
+          <div *ngIf="userMail.invalid && (userMail.dirty || userMail.touched)" class="alert alert-danger">
+            <!-- individual validation errors -->
+            <div *ngIf="userMail.errors.required">Field is required!</div>
+            <div *ngIf="userMail.errors.email">Field is not a valid email!</div>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="text"
+            id="phone"
+            class="form-control"
+            name="phone"
+            placeholder="Your Phone Number"
+            rows="10"
+            [(ngModel)]="model.phone"
+            #phone="ngModel"
+           
+            required minlength="10" maxlength="10" />
+          
+
+          <!-- input validation group -->
+          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+            <!-- individual validation errors -->
+            <div *ngIf="phone.errors.required">Field is required!</div>
+            <div *ngIf="phone.errors.minlength">Not a valid Phone Number!</div>
+            <div *ngIf="phone.errors.maxlength">Not a valid Phone Number!</div>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password"
+            id="password"
+            class="form-control"
+            name="password"
+            placeholder="Your Password"
+            [(ngModel)]="model.password"
+            #password="ngModel"
+           
+            required  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"/>
+          
+
+          <!-- input validation group -->
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+            <!-- individual validation errors -->
+            <div *ngIf="password.errors?.required">Field is required!</div>
+           
+            <div *ngIf="password.errors.pattern"> Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
+         
+          </div>
+        </div>
+
+         <div class="form-group">
+            <label for="confirmpassword">Confirm Password</label>
+            <input type="password"
+              id="confirmpassword"
+              class="form-control"
+              name="confirmpassword"
+              placeholder="Your Password"
+              [(ngModel)]="model.confirmpassword"
+              #confirmpassword="ngModel"
+             
+              required  pattern="{{ password.value }}"/> 
+            
+  
+            <!-- input validation group -->
+            <div *ngIf=" confirmpassword.invalid && (confirmpassword.dirty || confirmpassword.touched)" class="alert alert-danger">
+                <div *ngIf="confirmpassword.errors.required"> Confirm password is required. </div>
+                <div *ngIf="confirmpassword.errors.pattern"> Password & Confirm Password does not match.</div>
+              </div>
+          </div> 
+        
+        <button type="submit" class="btn btn-info pull-right" [disabled]="!lf.form.valid">
+          <i class="fa fa-envelope-o"></i>
+          <span> Register</span>
+        </button>
+      </form>
+    </div>
+    <div class="offset-3"></div>
+  </div>
+</div>

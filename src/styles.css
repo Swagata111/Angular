@@ -1,0 +1,22 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+ @import './styles/css/bootstrap.min.css';
+ 
+
+.list-group-item {
+  cursor: pointer;
+}
+
+.input-label {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  cursor: pointer;
+}
+
+.input-label-lg {
+  background: rgba(92, 21, 36, 0);
+  border: none;
+  cursor: pointer;
+  font-size: large;
+  font-weight: bold;
+} 
